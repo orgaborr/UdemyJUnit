@@ -6,6 +6,11 @@ class BankAccountTest {
 
     private BankAccount account;
 
+    @org.junit.jupiter.api.BeforeAll
+    public static void beforeAll() {
+        System.out.println("This executes before any test cases");
+    }
+
     @org.junit.jupiter.api.BeforeEach
     public void setup() {
         account = new BankAccount("Gábor", "Orbán", 1000.00, BankAccount.CHECKING);
@@ -39,5 +44,10 @@ class BankAccountTest {
     @org.junit.jupiter.api.Test
     public void isChecking_true() {
         assertTrue(account.isChecking());
+    }
+
+    @org.junit.jupiter.api.AfterAll
+    public static void afterAll() {
+        System.out.println("This executes after any test cases");
     }
 }
