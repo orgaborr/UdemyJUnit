@@ -1,5 +1,7 @@
 package com.ogabor;
 
+import org.junit.jupiter.api.Assertions;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BankAccountTest {
@@ -25,9 +27,16 @@ class BankAccountTest {
     }
 
     @org.junit.jupiter.api.Test
-    void withdraw() {
-        double balance = account.withdraw(200.00, true);
-        assertEquals(800.00, balance, 0);
+    void withdraw_branch() throws Exception {
+        double balance = account.withdraw(600.00, true);
+        assertEquals(400.00, balance, 0);
+    }
+
+    @org.junit.jupiter.api.Test
+    void withdraw_notBranch() throws Exception {
+        assertThrows(IllegalArgumentException.class, () -> {
+            double balance = account.withdraw(600.00, false);
+        });
     }
 
     @org.junit.jupiter.api.Test
@@ -37,7 +46,7 @@ class BankAccountTest {
     }
 
     @org.junit.jupiter.api.Test
-    void getBalance_withdraw() {
+    void getBalance_withdraw() throws Exception {
         account.withdraw(200.00, true);
         assertEquals(800.00, account.getBalance(), 0);
     }
