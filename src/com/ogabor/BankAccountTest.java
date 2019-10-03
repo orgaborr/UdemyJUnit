@@ -33,7 +33,7 @@ class BankAccountTest {
     }
 
     @org.junit.jupiter.api.Test
-    void withdraw_notBranch() throws Exception {
+    void withdraw_notBranch() {
         assertThrows(IllegalArgumentException.class, () -> {
             double balance = account.withdraw(600.00, false);
         });
